@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { QuickSortComponent } from './quick-sort/quick-sort.component';
+import { HomeComponent } from './modules/home/home.component';
+import { QuickSortComponent } from './modules/quick-sort/quick-sort.component';
+import { BarsComponent } from './shared/components/bars/bars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    QuickSortComponent
+    QuickSortComponent,
+    BarsComponent
   ],
   imports: [
     BrowserModule,

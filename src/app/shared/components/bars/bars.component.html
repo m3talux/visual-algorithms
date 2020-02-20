@@ -1,0 +1,7 @@
+<div class="bars" [style.width.%]="width" [style.height.%]="height">
+  <div *ngFor="let bar of bars" class="bar-container">
+    <div class="space"></div>
+    <div [style.height.%]="bar" class="bar"></div>
+  </div>
+</div>
+
