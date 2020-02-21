@@ -17,5 +17,17 @@
       border: 1px solid lightgray;
       border-radius: 5px 5px 0 0;
     }
+
+    .current {
+      background-color: red;
+    }
+
+    .selected {
+      background-color: blue;
+    }
+
+    .checked {
+      background-color: green;
+    }
   }
 }

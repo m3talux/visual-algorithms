@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Bar} from '../../models/bar';
 
 @Component({
   selector: 'app-bars',
@@ -8,7 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class BarsComponent implements OnInit {
 
   @Input()
-  bars: number[];
+  bars: Bar[];
 
   @Input()
   height: number;
