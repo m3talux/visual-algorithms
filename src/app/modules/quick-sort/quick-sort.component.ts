@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RandomArrayGenerator} from '../../shared/utils/random.array.generator';
 import {Bar} from '../../shared/models/bar';
-import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-quick-sort',
@@ -17,7 +16,7 @@ export class QuickSortComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bars = RandomArrayGenerator.arrayOfLength(128);
+    this.bars = RandomArrayGenerator.arrayOfLength(24);
   }
 
   startSort(): void {
