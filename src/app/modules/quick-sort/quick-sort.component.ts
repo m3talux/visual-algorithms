@@ -26,7 +26,6 @@ export class QuickSortComponent implements OnInit {
 
   startSort(): void {
     if (!this.sorting) {
-      this.generateArray();
       this.quickSort();
     }
   }
