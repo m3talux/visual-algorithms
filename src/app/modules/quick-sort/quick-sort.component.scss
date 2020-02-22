@@ -10,7 +10,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 24px;
-    margin-bottom: 100px;
 
     .actions {
       display: flex;
@@ -23,13 +22,10 @@
       }
 
       .sort-button {
-        color: #5671ff;
+        color: #2196f3;
         outline: none;
+        font-size: 32px;
 
-        mat-icon {
-          color: white;
-          font-size: 200px;
-        }
 
         &:hover {
           cursor: pointer;
