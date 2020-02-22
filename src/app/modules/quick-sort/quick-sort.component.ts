@@ -10,20 +10,32 @@ import {Bar} from '../../shared/models/bar';
 export class QuickSortComponent implements OnInit {
 
   bars: Bar[];
-  sorted = false;
+  sorting = false;
+  speed = 1;
+  arrayLength = 64;
+
+  private normalDelay = 100;
+  private slowDelay = 250;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.bars = RandomArrayGenerator.arrayOfLength(24);
+    this.generateArray();
   }
 
   startSort(): void {
-    this.quickSort().then(() => this.sorted = true);
+    if (!this.sorting) {
+      this.quickSort();
+    }
+  }
+
+  generateArray(): void {
+    this.bars = RandomArrayGenerator.arrayOfLength(this.arrayLength);
   }
 
   async quickSort(begin: number = 0, end: number = this.bars.length - 1): Promise<void> {
+    this.sorting = true;
     if (!this.bars) {
       return;
     }
@@ -37,18 +49,18 @@ export class QuickSortComponent implements OnInit {
     const pivotIndex = Math.floor(begin + (end - begin) / 2);
     this.bars[pivotIndex].current = true;
     const pivot = this.bars[pivotIndex].value;
-    await this.delay(100);
+    await this.delay(this.speed * this.normalDelay);
 
     while (i <= j) {
       while (this.bars[i].value < pivot) {
         this.bars[i].checked = true;
-        await this.delay(100);
+        await this.delay(this.speed * this.normalDelay);
         this.bars[i].checked = false;
         i++;
       }
       while (this.bars[j].value > pivot) {
         this.bars[j].checked = true;
-        await this.delay(100);
+        await this.delay(this.speed * this.normalDelay);
         this.bars[j].checked = false;
         j--;
       }
@@ -58,7 +70,7 @@ export class QuickSortComponent implements OnInit {
         j--;
       }
     }
-    const currentBar = this.bars.find((b) => b.current);
+    let currentBar = this.bars.find((b) => b.current);
     if (currentBar) {
       currentBar.current = false;
     }
@@ -68,16 +80,20 @@ export class QuickSortComponent implements OnInit {
     if (i < end) {
       this.quickSort(i, end);
     }
+    currentBar = this.bars.find((b) => b.current);
+    if (!currentBar) {
+      this.sorting = false;
+    }
   }
 
   async exchangeNumbers(i: number, j: number): Promise<void> {
     this.bars[i].selected = true;
     this.bars[j].selected = true;
-    await this.delay(250);
+    await this.delay(this.speed * this.slowDelay);
     const temp = this.bars[i];
     this.bars[i] = this.bars[j];
     this.bars[j] = temp;
-    await this.delay(250);
+    await this.delay(this.speed * this.slowDelay);
     this.bars[i].selected = false;
     this.bars[j].selected = false;
   }
