@@ -11,11 +11,12 @@ export class QuickSortComponent implements OnInit {
 
   bars: Bar[];
   sorting = false;
+  paused = false;
   speed = 1;
   arrayLength = 64;
 
   private normalDelay = 100;
-  private slowDelay = 250;
+  private slowDelay = 200;
 
   constructor() {
   }
@@ -25,8 +26,16 @@ export class QuickSortComponent implements OnInit {
   }
 
   startSort(): void {
-    if (!this.sorting) {
-      this.quickSort();
+    if (!this.sorting && !this.paused) {
+      this.sort();
+    } else if (this.paused) {
+      this.paused = false;
+    }
+  }
+
+  pauseSort(): void {
+    if (!this.paused) {
+      this.paused = true;
     }
   }
 
@@ -34,72 +43,108 @@ export class QuickSortComponent implements OnInit {
     this.bars = RandomArrayGenerator.arrayOfLength(this.arrayLength);
   }
 
-  async quickSort(begin: number = 0, end: number = this.bars.length - 1): Promise<void> {
-    this.sorting = true;
-    if (!this.bars) {
-      return;
-    }
-    if (begin >= end) {
-      return;
-    }
+  /**
+   * This function takes last element as pivot,
+   * places the pivot element at its correct
+   * position in sorted array, and places all
+   * smaller (smaller than pivot) to left of
+   * pivot and all greater elements to right
+   * of pivot.
+   */
+  async partition(begin: number, end: number) {
+    await this.checkPaused();
+    const pivot = this.bars[end].value;
+    let i = (begin - 1);
 
-    let i = begin;
-    let j = end;
-
-    const pivotIndex = Math.floor(begin + (end - begin) / 2);
-    this.bars[pivotIndex].current = true;
-    const pivot = this.bars[pivotIndex].value;
-    await this.delay(this.speed * this.normalDelay);
-
-    while (i <= j) {
-      while (this.bars[i].value < pivot) {
-        this.bars[i].checked = true;
-        await this.delay(this.speed * this.normalDelay);
-        this.bars[i].checked = false;
+    for (let j = begin; j < end; j++) {
+      await this.checkPaused();
+      this.bars[j].checked = true;
+      await this.delay(this.speed * this.normalDelay);
+      await this.checkPaused();
+      /**
+       * If current element is smaller than the pivot
+       */
+      if (this.bars[j].value < pivot) {
         i++;
-      }
-      while (this.bars[j].value > pivot) {
-        this.bars[j].checked = true;
-        await this.delay(this.speed * this.normalDelay);
         this.bars[j].checked = false;
-        j--;
+
+        /**
+         * swap bars[i] and bars[j]
+         */
+        await this.swap(i, j);
+      } else {
+        this.bars[j].checked = false;
       }
-      if (i <= j) {
-        await this.exchangeNumbers(i, j);
-        i++;
-        j--;
-      }
     }
-    let currentBar = this.bars.find((b) => b.current);
-    if (currentBar) {
-      currentBar.current = false;
+    /**
+     * swap bars[i+1] and bars[end] (pivot)
+     */
+    await this.swap(i + 1, end);
+    return i + 1;
+  }
+
+  /**
+   * This function is responsible of
+   * swapping 2 elements at specified
+   * indexes.
+   */
+  async swap(i: number, j: number): Promise<void> {
+    if (i !== j) {
+      this.bars[i].selected = true;
+      this.bars[j].selected = true;
+      await this.checkPaused();
+      await this.delay(this.speed * this.slowDelay);
+      await this.checkPaused();
+      const temp = this.bars[i];
+      this.bars[i] = this.bars[j];
+      this.bars[j] = temp;
+      await this.checkPaused();
+      await this.delay(this.speed * this.slowDelay);
+      await this.checkPaused();
+      this.bars[i].selected = false;
+      this.bars[j].selected = false;
     }
-    if (begin < j) {
-      this.quickSort(begin, j);
+  }
+
+  /**
+   * This is the main function that sorts
+   * our bar array using the quick sort method.
+   */
+  async sort(begin: number = 0, end: number = this.bars.length - 1) {
+    this.sorting = true;
+    if (begin < end) {
+      /**
+       * pivot is the partitioning index,
+       * this.bars[pivot] is at the right
+       * index now.
+       */
+      this.bars[end].current = true;
+      const pivot = await this.partition(begin, end);
+      this.bars[pivot].current = false;
+
+      /**
+       * Recursively sort elements before
+       * partition and after partition.
+       */
+      this.sort(begin, pivot - 1);
+      this.sort(pivot + 1, end);
     }
-    if (i < end) {
-      this.quickSort(i, end);
-    }
-    currentBar = this.bars.find((b) => b.current);
+    const currentBar = this.bars.find((b) => b.current);
     if (!currentBar) {
       this.sorting = false;
     }
   }
 
-  async exchangeNumbers(i: number, j: number): Promise<void> {
-    this.bars[i].selected = true;
-    this.bars[j].selected = true;
-    await this.delay(this.speed * this.slowDelay);
-    const temp = this.bars[i];
-    this.bars[i] = this.bars[j];
-    this.bars[j] = temp;
-    await this.delay(this.speed * this.slowDelay);
-    this.bars[i].selected = false;
-    this.bars[j].selected = false;
-  }
-
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async checkPaused() {
+    if (this.paused) {
+      await this.delay(100).then(() => this.checkPaused());
+    } else {
+      return;
+    }
   }
 
 }
