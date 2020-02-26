@@ -1,7 +1,36 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
+    "paths": {
+      "@app/*": [
+        "app/*"
+      ],
+      "@shared/*": [
+        "app/shared/*"
+      ],
+      "@modules/*": [
+        "app/modules/*"
+      ],
+      "@home/*": [
+        "app/modules/home/*"
+      ],
+      "@sorting/*": [
+        "app/modules/sorting/*"
+      ],
+      "@components/*": [
+        "app/shared/components/*"
+      ],
+      "@services/*": [
+        "app/core/services/*"
+      ],
+      "@models/*": [
+        "app/shared/models/*"
+      ],
+      "@utils/*": [
+        "app/shared/utils/*"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

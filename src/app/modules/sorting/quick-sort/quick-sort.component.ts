@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {RandomArrayGenerator} from '../../shared/utils/random.array.generator';
-import {Bar} from '../../shared/models/bar';
+import {RandomArrayGenerator} from '@utils/random.array.generator';
+import {Bar} from '@models/bar';
 
 @Component({
   selector: 'app-quick-sort',

@@ -1,0 +1,19 @@
+@import "~assets/scss/variables";
+
+.content {
+  padding: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    font-size: 42px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+  .version {
+    font-size: 12px;
+    color: $primary-color;
+  }
+}
