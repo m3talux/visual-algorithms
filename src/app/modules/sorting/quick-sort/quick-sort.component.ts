@@ -58,7 +58,7 @@ export class QuickSortComponent implements OnInit {
 
     for (let j = begin; j < end; j++) {
       await this.checkPaused();
-      this.bars[j].checked = true;
+      this.bars[j].visited = true;
       await this.delay(this.speed * this.normalDelay);
       await this.checkPaused();
       /**
@@ -66,14 +66,14 @@ export class QuickSortComponent implements OnInit {
        */
       if (this.bars[j].value < pivot) {
         i++;
-        this.bars[j].checked = false;
+        this.bars[j].visited = false;
 
         /**
          * swap bars[i] and bars[j]
          */
         await this.swap(i, j);
       } else {
-        this.bars[j].checked = false;
+        this.bars[j].visited = false;
       }
     }
     /**

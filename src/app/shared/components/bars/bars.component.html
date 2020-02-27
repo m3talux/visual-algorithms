@@ -4,7 +4,7 @@
     <div *ngFor="let bar of bars" class="bar-container">
       <div class="space"></div>
       <div [style.height.%]="bar.value" class="bar"
-           [ngClass]="{'current': bar.current, 'selected': bar.selected, 'checked' : bar.checked}"></div>
+           [ngClass]="{'current': bar.current, 'selected': bar.selected, 'visited' : bar.visited}"></div>
     </div>
   </div>
 </div>

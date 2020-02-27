@@ -20,7 +20,8 @@
         </mat-select>
       </mat-form-field>
       <mat-icon (click)="pauseSort()" [ngClass]="{'disabled': paused || !sorting}" class="pause-button">pause</mat-icon>
-      <mat-icon (click)="startSort()" [ngClass]="{'disabled': sorting && !paused}" class="sort-button">play_arrow</mat-icon>
+      <mat-icon (click)="startSort()" [ngClass]="{'disabled': sorting && !paused}" class="sort-button">play_arrow
+      </mat-icon>
     </div>
   </div>
   <app-bars [bars]="bars" width="100" height="90"></app-bars>
