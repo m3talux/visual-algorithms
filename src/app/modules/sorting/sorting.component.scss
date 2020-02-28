@@ -1,0 +1,65 @@
+@import "~assets/scss/mixins";
+
+.content {
+  padding: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include breakpoint(xs) {
+    padding: 24px;
+  }
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 40px;
+    @include inset-neumorphism-shadow;
+
+    .title {
+      margin: 0 !important;
+      font-size: 42px;
+      text-align: center;
+    }
+  }
+
+  .menu {
+    margin-top: 80px;
+    display: grid;
+
+    @include breakpoint(xs) {
+      grid-template-columns: auto;
+      grid-gap: 24px;
+    }
+
+    @include breakpoint(sm) {
+      grid-template-columns: auto auto auto;
+      grid-gap: 32px;
+    }
+
+    @include breakpoint(md) {
+      grid-template-columns: auto auto auto auto;
+      grid-gap: 68px;
+    }
+
+    @include breakpoint(lg) {
+      grid-template-columns: auto auto auto auto auto;
+      grid-gap: 68px;
+    }
+  }
+
+  .menu-item {
+    padding: 20px;
+    width: 180px;
+    text-align: center;
+    transition: all .2s linear;
+    @include neumorphism-shadow;
+
+    &:hover {
+      cursor: pointer;
+      @include inset-neumorphism-shadow;
+    }
+  }
+}

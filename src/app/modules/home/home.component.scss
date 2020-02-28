@@ -29,6 +29,7 @@
     }
 
     .version {
+      margin: 0 !important;
       font-size: 12px;
       color: $primary-color;
     }
@@ -44,8 +45,8 @@
     }
 
     @include breakpoint(sm) {
-       grid-template-columns: auto auto;
-       grid-gap: 32px;
+      grid-template-columns: auto auto;
+      grid-gap: 32px;
     }
 
     @include breakpoint(md) {

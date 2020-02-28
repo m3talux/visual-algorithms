@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {QuickSortComponent} from './quick-sort/quick-sort.component';
+import {SortingComponent} from '@sorting/sorting.component';
 
 
 const routes: Routes = [
-  {path: '', component: QuickSortComponent}
+  {path: '', component: SortingComponent},
+  {path: 'quick-sort', component: QuickSortComponent}
 ];
 
 @NgModule({
