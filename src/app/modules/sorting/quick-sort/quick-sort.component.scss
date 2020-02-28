@@ -1,3 +1,5 @@
+@import "~assets/scss/variables";
+
 .content {
   height: 100vh;
   width: 100vw;
@@ -22,7 +24,7 @@
       }
 
       .pause-button, .sort-button {
-        color: #2196f3;
+        color: $primary-color;
         font-size: 32px;
 
 
