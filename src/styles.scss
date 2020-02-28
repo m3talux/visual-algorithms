@@ -40,3 +40,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 h1, h2, h3, h4, h5, h6, p, label, span, input {
   color: $font-color;
 }
+
+mat-icon {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}

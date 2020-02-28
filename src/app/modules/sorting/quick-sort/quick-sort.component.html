@@ -6,19 +6,7 @@
       <mat-slider class="length-select" min="3" max="256" step="1" [(value)]="arrayLength" thumbLabel="true"
                   (valueChange)="generateArray()" [disabled]="sorting" color="primary"></mat-slider>
       <label>Animation Speed</label>
-      <mat-form-field floatLabel="never" class="speed-select">
-        <mat-label>Speed</mat-label>
-        <mat-select [(value)]="speed">
-          <mat-option [value]="4">0.25x</mat-option>
-          <mat-option [value]="2">0.5x</mat-option>
-          <mat-option [value]="1.5">0.75x</mat-option>
-          <mat-option [value]="1">1x</mat-option>
-          <mat-option [value]="0.5">2x</mat-option>
-          <mat-option [value]="0.33">3x</mat-option>
-          <mat-option [value]="0.2">5x</mat-option>
-          <mat-option [value]="0.1">10x</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <app-speed-selector (valueChanged)="speedChange($event)"></app-speed-selector>
       <mat-icon (click)="pauseSort()" [ngClass]="{'disabled': paused || !sorting}" class="pause-button">pause</mat-icon>
       <mat-icon (click)="startSort()" [ngClass]="{'disabled': sorting && !paused}" class="sort-button">play_arrow
       </mat-icon>

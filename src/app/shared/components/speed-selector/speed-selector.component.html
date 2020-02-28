@@ -1,0 +1,6 @@
+<div class="container">
+  <mat-icon class="slow" (click)="slowDown()" [ngClass]="{'disabled': index === 0}">arrow_back_ios</mat-icon>
+  <label class="value-name">{{speeds[index].name}}</label>
+  <mat-icon class="speed" (click)="speedUp()" [ngClass]="{'disabled': index === speeds.length - 1}">arrow_forward_ios
+  </mat-icon>
+</div>

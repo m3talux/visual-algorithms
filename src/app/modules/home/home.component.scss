@@ -6,6 +6,10 @@
   flex-direction: column;
   align-items: center;
 
+  @include breakpoint(xs) {
+    padding: 24px;
+  }
+
   .title-container {
     display: flex;
     flex-direction: column;
@@ -16,10 +20,12 @@
 
     .title {
       font-size: 42px;
+      text-align: center;
     }
 
     .subtitle {
       font-size: 18px;
+      text-align: center;
     }
 
     .version {
@@ -31,7 +37,20 @@
   .menu {
     margin-top: 80px;
     display: grid;
-    grid-gap: 68px;
-    grid-template-columns: auto auto auto;
+
+    @include breakpoint(xs) {
+      grid-template-columns: auto;
+      grid-gap: 24px;
+    }
+
+    @include breakpoint(sm) {
+       grid-template-columns: auto auto;
+       grid-gap: 32px;
+    }
+
+    @include breakpoint(md) {
+      grid-template-columns: auto auto auto;
+      grid-gap: 68px;
+    }
   }
 }

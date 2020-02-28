@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 
 import {MatIconModule} from '@angular/material/icon';
-import {MatSelectModule} from '@angular/material/select';
 import {FormsModule} from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {SortingComponent} from './sorting.component';
@@ -19,7 +18,6 @@ import {SharedModule} from '@shared/shared.module';
     CommonModule,
     SortingRoutingModule,
     MatIconModule,
-    MatSelectModule,
     FormsModule,
     MatSliderModule,
     SharedModule

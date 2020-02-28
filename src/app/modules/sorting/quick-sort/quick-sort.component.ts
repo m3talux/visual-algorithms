@@ -39,6 +39,10 @@ export class QuickSortComponent implements OnInit {
     }
   }
 
+  speedChange(value: number) {
+    this.speed = value;
+  }
+
   generateArray(): void {
     this.bars = RandomArrayGenerator.arrayOfLength(this.arrayLength);
   }
