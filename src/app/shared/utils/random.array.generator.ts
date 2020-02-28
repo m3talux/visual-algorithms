@@ -1,4 +1,4 @@
-import {Bar} from '../models/bar';
+import {Bar} from '@models/bar';
 
 export class RandomArrayGenerator {
   static arrayOfLength(length: number): Bar[] {
