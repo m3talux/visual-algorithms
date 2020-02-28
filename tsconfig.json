@@ -18,9 +18,6 @@
       "@sorting/*": [
         "app/modules/sorting/*"
       ],
-      "@components/*": [
-        "app/shared/components/*"
-      ],
       "@services/*": [
         "app/core/services/*"
       ],

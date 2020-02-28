@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 
 import {CommonModule} from '@angular/common';
-import {BarsComponent} from '@components/bars/bars.component';
-import { SpeedSelectorComponent } from '@components/speed-selector/speed-selector.component';
 import {MatIconModule} from '@angular/material/icon';
+import {BarsComponent} from '@shared/components/bars/bars.component';
+import {SpeedSelectorComponent} from '@shared/components/speed-selector/speed-selector.component';
 
 @NgModule({
   declarations: [

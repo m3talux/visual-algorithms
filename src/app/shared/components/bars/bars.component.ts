@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Bar} from '../../models/bar';
+import {Bar} from '@models/bar';
 
 @Component({
   selector: 'app-bars',
