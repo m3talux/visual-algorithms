@@ -1,13 +1,15 @@
-@import "~assets/scss/variables";
+@import "~assets/scss/mixins";
 
 .card {
   width: 260px;
   height: 260px;
   border-radius: 10px;
-  padding: 10px 10px 0 10px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
+  padding: 20px 20px 0 20px;
+  box-shadow:  6px 6px 12px $dark-shadow-color,
+  -6px -6px 12px $light-shadow-color;
   display: flex;
   flex-direction: column;
+  @include inset-neumorphism-shadow;
 
   app-bars {
     flex: 1;

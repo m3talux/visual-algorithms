@@ -1,21 +1,33 @@
+@import "variables";
+
 @mixin breakpoint($class) {
   @if $class == xs {
-    @media (max-width: 767px) { @content; }
-  }
-
-  @else if $class == sm {
-    @media (min-width: 768px) { @content; }
-  }
-
-  @else if $class == md {
-    @media (min-width: 992px) { @content; }
-  }
-
-  @else if $class == lg {
-    @media (min-width: 1200px) { @content; }
-  }
-
-  @else {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $class == sm {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $class == md {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $class == lg {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else {
     @warn "Breakpoint mixin supports: xs, sm, md, lg";
   }
+}
+
+@mixin inset-neumorphism-shadow {
+  box-shadow: inset 6px 6px 12px $dark-shadow-color,
+  inset -6px -6px 12px $light-shadow-color;
+}
+
+@mixin neumorphism-shadow {
+  box-shadow: 6px 6px 12px $dark-shadow-color,
+  -6px -6px 12px $light-shadow-color;
 }
