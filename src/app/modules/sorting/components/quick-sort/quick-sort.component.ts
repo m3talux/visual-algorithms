@@ -1,50 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {RandomArrayGenerator} from '@utils/random.array.generator';
-import {Bar} from '@models/bar';
+import {Component} from '@angular/core';
+import {SorterComponent} from '@sorting/components/sorter/sorter.component';
+import {SortingService} from '@services/sorting.service';
 
 @Component({
   selector: 'app-quick-sort',
   templateUrl: './quick-sort.component.html',
   styleUrls: ['./quick-sort.component.scss']
 })
-export class QuickSortComponent implements OnInit {
+export class QuickSortComponent extends SorterComponent {
 
-  bars: Bar[];
-  sorting = false;
-  paused = false;
-  speed = 1;
-  arrayLength = 64;
-
-  private normalDelay = 100;
-  private slowDelay = 200;
-
-  constructor() {
+  constructor(private service: SortingService) {
+    super(service);
   }
 
-  ngOnInit(): void {
-    this.generateArray();
+  updateArrayLength(len: number) {
+    this.service.setArrayLength(len);
   }
 
-  startSort(): void {
-    if (!this.sorting && !this.paused) {
-      this.sort();
-    } else if (this.paused) {
-      this.paused = false;
-    }
-  }
-
-  pauseSort(): void {
-    if (!this.paused) {
-      this.paused = true;
-    }
-  }
-
-  speedChange(value: number) {
-    this.speed = value;
-  }
-
-  generateArray(): void {
-    this.bars = RandomArrayGenerator.arrayOfLength(this.arrayLength);
+  sort() {
+    this.quickSort();
   }
 
   /**
@@ -63,7 +37,7 @@ export class QuickSortComponent implements OnInit {
     for (let j = begin; j < end; j++) {
       await this.checkPaused();
       this.bars[j].visited = true;
-      await this.delay(this.speed * this.normalDelay);
+      await this.mDelay();
       await this.checkPaused();
       /**
        * If current element is smaller than the pivot
@@ -97,13 +71,13 @@ export class QuickSortComponent implements OnInit {
       this.bars[i].selected = true;
       this.bars[j].selected = true;
       await this.checkPaused();
-      await this.delay(this.speed * this.slowDelay);
+      await this.sDelay();
       await this.checkPaused();
       const temp = this.bars[i];
       this.bars[i] = this.bars[j];
       this.bars[j] = temp;
       await this.checkPaused();
-      await this.delay(this.speed * this.slowDelay);
+      await this.sDelay();
       await this.checkPaused();
       this.bars[i].selected = false;
       this.bars[j].selected = false;
@@ -114,7 +88,7 @@ export class QuickSortComponent implements OnInit {
    * This is the main function that sorts
    * our bar array using the quick sort method.
    */
-  async sort(begin: number = 0, end: number = this.bars.length - 1) {
+  async quickSort(begin: number = 0, end: number = this.bars.length - 1) {
     this.sorting = true;
     if (begin < end) {
       /**
@@ -130,25 +104,12 @@ export class QuickSortComponent implements OnInit {
        * Recursively sort elements before
        * partition and after partition.
        */
-      this.sort(begin, pivot - 1);
-      this.sort(pivot + 1, end);
+      this.quickSort(begin, pivot - 1);
+      this.quickSort(pivot + 1, end);
     }
     const currentBar = this.bars.find((b) => b.current);
     if (!currentBar) {
       this.sorting = false;
     }
   }
-
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async checkPaused() {
-    if (this.paused) {
-      await this.delay(100).then(() => this.checkPaused());
-    } else {
-      return;
-    }
-  }
-
 }

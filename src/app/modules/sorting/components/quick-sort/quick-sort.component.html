@@ -4,11 +4,11 @@
     <div class="actions">
       <label>Array Size ({{arrayLength}})</label>
       <mat-slider class="length-select" min="3" max="256" step="1" [(value)]="arrayLength" thumbLabel="true"
-                  (valueChange)="generateArray()" [disabled]="sorting" color="primary"></mat-slider>
+                  (valueChange)="updateArrayLength($event)" [disabled]="sorting" color="primary"></mat-slider>
       <label>Animation Speed</label>
       <app-speed-selector (valueChanged)="speedChange($event)"></app-speed-selector>
-      <mat-icon (click)="pauseSort()" [ngClass]="{'disabled': paused || !sorting}" class="pause-button">pause</mat-icon>
-      <mat-icon (click)="startSort()" [ngClass]="{'disabled': sorting && !paused}" class="sort-button">play_arrow
+      <mat-icon (click)="pauseSorting()" [ngClass]="{'disabled': paused || !sorting}" class="pause-button">pause</mat-icon>
+      <mat-icon (click)="startSorting()" [ngClass]="{'disabled': sorting && !paused}" class="sort-button">play_arrow
       </mat-icon>
     </div>
   </div>

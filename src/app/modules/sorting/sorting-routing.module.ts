@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {QuickSortComponent} from './quick-sort/quick-sort.component';
+import {QuickSortComponent} from './components/quick-sort/quick-sort.component';
 import {SortingComponent} from '@sorting/sorting.component';
 
 

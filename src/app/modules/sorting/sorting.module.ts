@@ -5,14 +5,16 @@ import {FormsModule} from '@angular/forms';
 import {MatSliderModule} from '@angular/material/slider';
 import {SortingComponent} from './sorting.component';
 import {SortingRoutingModule} from './sorting-routing.module';
-import {QuickSortComponent} from 'app/modules/sorting/quick-sort/quick-sort.component';
+import {QuickSortComponent} from 'app/modules/sorting/components/quick-sort/quick-sort.component';
 import {CommonModule} from '@angular/common';
 import {SharedModule} from '@shared/shared.module';
+import { SorterComponent } from './components/sorter/sorter.component';
 
 @NgModule({
   declarations: [
     SortingComponent,
-    QuickSortComponent
+    QuickSortComponent,
+    SorterComponent
   ],
   imports: [
     CommonModule,
