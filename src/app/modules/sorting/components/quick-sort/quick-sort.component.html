@@ -3,7 +3,7 @@
     <h2>Quick Sort Algorithm</h2>
     <div class="actions">
       <label>Array Size ({{arrayLength}})</label>
-      <mat-slider class="length-select" min="3" max="256" step="1" [(value)]="arrayLength" thumbLabel="true"
+      <mat-slider class="length-select" min="32" max="256" step="1" [(value)]="arrayLength" thumbLabel="true"
                   (valueChange)="updateArrayLength($event)" [disabled]="sorting" color="primary"></mat-slider>
       <label>Animation Speed</label>
       <app-speed-selector (valueChanged)="speedChange($event)"></app-speed-selector>
